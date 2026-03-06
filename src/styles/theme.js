@@ -1,0 +1,33 @@
+export const darkTheme = {
+  bg: "#0C111D", bgGrad1: "#101828", bgGrad2: "#0C111D",
+  surface: "#1D2939", surfaceAlt: "#161B26",
+  surfaceHover: "#1D293920", surfaceHover2: "#1D293930",
+  border: "#344054", borderLight: "#1D2939",
+  borderActive: "#7F56D9", borderSubtle: "#475467",
+  text: "#F2F4F7", textBright: "#FFFFFF", textTitle: "#F9FAFB",
+  textBody: "#EAECF0", textMuted: "#98A2B3",
+  textDim: "#98A2B3", textFaint: "#667085", textGhost: "#475467",
+  pill: "#1D2939", pillText: "#98A2B3", barBg: "#344054",
+  stickyBg: "#0C111Dee", scrollTrack: "#1D2939", scrollThumb: "#475467",
+  inputBg: "#1D2939", gongBorder: "#344054", cannyBorder: "#344054",
+  shadow: "0px 1px 2px rgba(16, 24, 40, 0.3)",
+  shadowMd: "0px 4px 8px -2px rgba(16, 24, 40, 0.3), 0px 2px 4px -2px rgba(16, 24, 40, 0.3)",
+  shadowLg: "0px 12px 16px -4px rgba(16, 24, 40, 0.4), 0px 4px 6px -2px rgba(16, 24, 40, 0.3)",
+};
+
+export const lightTheme = {
+  bg: "#F9FAFB", bgGrad1: "#FFFFFF", bgGrad2: "#F9FAFB",
+  surface: "#FFFFFF", surfaceAlt: "#F9FAFB",
+  surfaceHover: "#F4EBFF20", surfaceHover2: "#ECFDF320",
+  border: "#EAECF0", borderLight: "#F2F4F7",
+  borderActive: "#7F56D9", borderSubtle: "#D0D5DD",
+  text: "#344054", textBright: "#101828", textTitle: "#101828",
+  textBody: "#344054", textMuted: "#667085",
+  textDim: "#98A2B3", textFaint: "#D0D5DD", textGhost: "#EAECF0",
+  pill: "#F2F4F7", pillText: "#667085", barBg: "#EAECF0",
+  stickyBg: "#F9FAFBee", scrollTrack: "#F2F4F7", scrollThumb: "#D0D5DD",
+  inputBg: "#FFFFFF", gongBorder: "#EAECF0", cannyBorder: "#D1FADF",
+  shadow: "0px 1px 2px rgba(16, 24, 40, 0.05)",
+  shadowMd: "0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06)",
+  shadowLg: "0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03)",
+};
