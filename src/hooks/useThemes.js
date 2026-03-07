@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { fetchThemes } from '../api/client.js';
+import { DEMO_THEMES } from '../data/demoData.js';
 
 export function useThemes(orgId, eventStream) {
   const [themes, setThemes] = useState([]);
@@ -9,8 +10,8 @@ export function useThemes(orgId, eventStream) {
   const refresh = useCallback(() => {
     setLoading(true);
     fetchThemes()
-      .then(data => { setThemes(data); setLoading(false); })
-      .catch(err => { setError(err.message); setLoading(false); });
+      .then(data => { setThemes(data); setError(null); setLoading(false); })
+      .catch(() => { setError(null); setThemes(DEMO_THEMES); setLoading(false); });
   }, []);
 
   useEffect(() => { refresh(); }, [orgId, refresh]);

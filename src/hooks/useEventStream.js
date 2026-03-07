@@ -23,10 +23,23 @@ export function useEventStream(orgId) {
 
   useEffect(() => {
     let es;
+    let closed = false;
 
     async function connect() {
       const apiUrl = import.meta.env.VITE_API_URL || '/api';
       let url = `${apiUrl}/events`;
+
+      // Pre-check: if API returns HTML, don't even try SSE
+      try {
+        const probe = await fetch(`${apiUrl}/stats`, { method: 'HEAD' });
+        const ct = probe.headers.get('content-type') || '';
+        if (ct.includes('text/html')) {
+          console.warn('SSE: backend not available, skipping EventSource');
+          return;
+        }
+      } catch { /* network error — backend unreachable, skip SSE */ return; }
+
+      if (closed) return;
 
       // EventSource doesn't support custom headers, so pass token as query param
       if (getTokenFn) {
@@ -39,7 +52,7 @@ export function useEventStream(orgId) {
       es = new EventSource(url);
 
       es.onopen = () => setConnected(true);
-      es.onerror = () => setConnected(false);
+      es.onerror = () => { setConnected(false); es.close(); };
 
       es.onmessage = (e) => {
         try {
@@ -68,6 +81,7 @@ export function useEventStream(orgId) {
     connect();
 
     return () => {
+      closed = true;
       if (es) es.close();
       setConnected(false);
     };

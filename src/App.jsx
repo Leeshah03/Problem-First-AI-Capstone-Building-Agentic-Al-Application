@@ -4,6 +4,7 @@ import { useThemes } from "./hooks/useThemes.js";
 import { useReviewQueue } from "./hooks/useReviewQueue.js";
 import { useEventStream } from "./hooks/useEventStream.js";
 import { setAuthTokenProvider, fetchConnectors, updateConnector, triggerConnectorSync, fetchActivity } from "./api/client.js";
+import { DEMO_CONNECTORS, DEMO_ACTIVITY } from "./data/demoData.js";
 
 let clerkAvailable = false;
 let SignedIn, SignedOut, SignIn, UserButton, OrganizationSwitcher, useAuth, useOrganization;
@@ -780,14 +781,14 @@ function ConnectorsPage({ T, isDark, isMobile, isAdmin, orgId, eventStream }) {
   const [historicalActivity, setHistoricalActivity] = useState([]);
 
   const loadConnectors = useCallback(() => {
-    fetchConnectors().then(setConnectors).catch(() => {}).finally(() => setLoadingConnectors(false));
+    fetchConnectors().then(setConnectors).catch(() => setConnectors(DEMO_CONNECTORS)).finally(() => setLoadingConnectors(false));
   }, []);
 
   useEffect(() => { loadConnectors(); }, [loadConnectors]);
 
   // Load historical activity on mount
   useEffect(() => {
-    fetchActivity(20).then(setHistoricalActivity).catch(() => {});
+    fetchActivity(20).then(setHistoricalActivity).catch(() => setHistoricalActivity(DEMO_ACTIVITY));
   }, []);
 
   // Reload connectors when a sync completes

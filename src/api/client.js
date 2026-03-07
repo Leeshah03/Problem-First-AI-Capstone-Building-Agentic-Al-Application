@@ -16,7 +16,13 @@ async function authFetch(url, options = {}) {
       if (token) headers['Authorization'] = `Bearer ${token}`;
     } catch { /* no token available */ }
   }
-  return fetch(url, { ...options, headers });
+  const res = await fetch(url, { ...options, headers });
+  // Detect HTML responses (e.g. SPA fallback returning index.html for /api/* routes)
+  const ct = res.headers.get('content-type') || '';
+  if (ct.includes('text/html')) {
+    throw new Error('API not available — received HTML instead of JSON');
+  }
+  return res;
 }
 
 export async function fetchThemes() {
