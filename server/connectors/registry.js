@@ -4,13 +4,17 @@ import { connectors } from '../db/schema.js';
 import { eq, and } from 'drizzle-orm';
 import { GongConnector } from './GongConnector.js';
 import { CannyConnector } from './CannyConnector.js';
-import { G2Connector } from './G2Connector.js';
+import { PendoConnector } from './PendoConnector.js';
+import { SalesforceConnector } from './SalesforceConnector.js';
+import { JiraConnector } from './JiraConnector.js';
 import { logger } from '../utils/logger.js';
 
 const CONNECTOR_TYPES = {
-  gong:  { class: GongConnector,  name: 'Gong',       defaultFrequency: '1h'  },
-  canny: { class: CannyConnector, name: 'Canny',      defaultFrequency: '24h' },
-  g2:    { class: G2Connector,    name: 'G2 Reviews',  defaultFrequency: '168h' },
+  gong:       { class: GongConnector,       name: 'Gong',       defaultFrequency: '1h'  },
+  canny:      { class: CannyConnector,      name: 'Canny',      defaultFrequency: '24h' },
+  pendo:      { class: PendoConnector,      name: 'Pendo',      defaultFrequency: '6h'  },
+  salesforce: { class: SalesforceConnector, name: 'Salesforce',  defaultFrequency: '6h'  },
+  jira:       { class: JiraConnector,       name: 'Jira',        defaultFrequency: '1h'  },
 };
 
 export function createConnectorInstance(connectorRow) {

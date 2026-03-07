@@ -10,7 +10,9 @@ export async function getStats(req, res) {
     const [signalCount] = await db.select({ value: count() }).from(signals).where(eq(signals.orgId, orgId));
     const [gongCount] = await db.select({ value: count() }).from(signals).where(and(eq(signals.source, 'gong'), eq(signals.orgId, orgId)));
     const [cannyCount] = await db.select({ value: count() }).from(signals).where(and(eq(signals.source, 'canny'), eq(signals.orgId, orgId)));
-    const [g2Count] = await db.select({ value: count() }).from(signals).where(and(eq(signals.source, 'g2'), eq(signals.orgId, orgId)));
+    const [pendoCount] = await db.select({ value: count() }).from(signals).where(and(eq(signals.source, 'pendo'), eq(signals.orgId, orgId)));
+    const [salesforceCount] = await db.select({ value: count() }).from(signals).where(and(eq(signals.source, 'salesforce'), eq(signals.orgId, orgId)));
+    const [jiraCount] = await db.select({ value: count() }).from(signals).where(and(eq(signals.source, 'jira'), eq(signals.orgId, orgId)));
     const [totalARR] = await db.select({ value: sum(themes.influencedARR) }).from(themes).where(eq(themes.orgId, orgId));
     const [connectorCount] = await db.select({ value: count() }).from(connectors).where(eq(connectors.orgId, orgId));
 
@@ -23,7 +25,7 @@ export async function getStats(req, res) {
     res.json({
       themes: themeCount.value,
       signals: signalCount.value,
-      signalsBySource: { gong: gongCount.value, canny: cannyCount.value, g2: g2Count.value },
+      signalsBySource: { gong: gongCount.value, canny: cannyCount.value, pendo: pendoCount.value, salesforce: salesforceCount.value, jira: jiraCount.value },
       totalInfluencedARR: totalARR.value || 0,
       connectors: connectorCount.value,
       pendingReviews: pendingReviews.value,

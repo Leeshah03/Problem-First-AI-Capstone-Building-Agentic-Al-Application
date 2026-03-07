@@ -811,7 +811,7 @@ function ConnectorsPage({ T, isDark, isMobile, isAdmin, orgId, eventStream }) {
   };
 
   const FREQ_LABELS = { '1h': 'Hourly', '6h': 'Every 6h', '24h': 'Daily', '168h': 'Weekly' };
-  const TYPE_ICONS = { gong: '\u{1F399}\u{FE0F}', canny: '\u{1F4AC}', g2: '\u{2B50}' };
+  const TYPE_ICONS = { gong: '\u{1F399}\u{FE0F}', canny: '\u{1F4AC}', pendo: '\u{1F4CA}', salesforce: '\u{2601}\u{FE0F}', jira: '\u{1F4CB}' };
 
   // Merge historical activity with live SSE activities
   const allActivities = useMemo(() => {
@@ -1253,7 +1253,7 @@ function AuthenticatedApp({ orgId, isAdmin }) {
               )},
               { key: "connectors", label: "Connectors", icon: (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+                  <path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a6 6 0 01-6 6 6 6 0 01-6-6V8z"/>
                 </svg>
               )},
             ].map(item => (
@@ -1781,7 +1781,7 @@ function AuthenticatedApp({ orgId, isAdmin }) {
             )},
             { key: "connectors", label: "Connectors", icon: (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+                <path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a6 6 0 01-6 6 6 6 0 01-6-6V8z"/>
               </svg>
             )},
           ].map(item => (
