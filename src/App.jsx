@@ -627,7 +627,7 @@ function ReviewQueuePage({ T, isDark, isMobile, isAdmin = true, orgId, eventStre
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
         <div>
-          <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: T.fg }}>Signals</h2>
+          <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: T.textTitle }}>Signals</h2>
           <p style={{ margin: "4px 0 0", fontSize: 13, color: T.textMuted }}>{total} items pending review</p>
         </div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -642,27 +642,27 @@ function ReviewQueuePage({ T, isDark, isMobile, isAdmin = true, orgId, eventStre
 
       {/* Filters */}
       <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap", alignItems: "center" }}>
-        <select value={filters.status} onChange={e => setFilters(f => ({ ...f, status: e.target.value, page: 1 }))} style={{ padding: "6px 10px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.fg, fontSize: 12 }}>
+        <select value={filters.status} onChange={e => setFilters(f => ({ ...f, status: e.target.value, page: 1 }))} style={{ padding: "6px 10px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.textBody, fontSize: 12, fontWeight: 500, fontFamily: "inherit", boxShadow: T.shadow }}>
           <option value="pending">Pending</option>
           <option value="accepted">Accepted</option>
           <option value="rejected">Rejected</option>
           <option value="reclassified">Reclassified</option>
           <option value="">All</option>
         </select>
-        <select value={filters.type} onChange={e => setFilters(f => ({ ...f, type: e.target.value, page: 1 }))} style={{ padding: "6px 10px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.fg, fontSize: 12 }}>
+        <select value={filters.type} onChange={e => setFilters(f => ({ ...f, type: e.target.value, page: 1 }))} style={{ padding: "6px 10px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.textBody, fontSize: 12, fontWeight: 500, fontFamily: "inherit", boxShadow: T.shadow }}>
           <option value="">All Types</option>
           <option value="low_confidence">Low Confidence</option>
           <option value="bias_conflict">Bias Conflict</option>
           <option value="duplicate_candidate">Duplicate</option>
           <option value="new_theme">Theme Merge</option>
         </select>
-        <select value={filters.sort} onChange={e => setFilters(f => ({ ...f, sort: e.target.value }))} style={{ padding: "6px 10px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.fg, fontSize: 12 }}>
+        <select value={filters.sort} onChange={e => setFilters(f => ({ ...f, sort: e.target.value }))} style={{ padding: "6px 10px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.textBody, fontSize: 12, fontWeight: 500, fontFamily: "inherit", boxShadow: T.shadow }}>
           <option value="confidence_asc">Lowest Confidence</option>
           <option value="confidence_desc">Highest Confidence</option>
           <option value="created_at_desc">Newest</option>
           <option value="created_at_asc">Oldest</option>
         </select>
-        <button onClick={refresh} style={{ padding: "6px 14px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.fg, fontSize: 12, cursor: "pointer" }}>Refresh</button>
+        <button onClick={refresh} style={{ padding: "6px 14px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.textBody, fontSize: 12, fontWeight: 500, fontFamily: "inherit", boxShadow: T.shadow, cursor: "pointer" }}>Refresh</button>
       </div>
 
       {/* Loading / Error */}
@@ -678,7 +678,7 @@ function ReviewQueuePage({ T, isDark, isMobile, isAdmin = true, orgId, eventStre
         <div key={item.id} style={{ border: `1px solid ${T.border}`, borderRadius: 12, padding: 16, marginBottom: 12, background: T.surface, transition: "border-color 0.2s", borderLeftWidth: 4, borderLeftColor: TYPE_COLORS[item.reviewType] || T.border }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, flexWrap: "wrap" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1, minWidth: 0 }}>
-              <input type="checkbox" checked={selected.has(item.id)} onChange={() => toggleSelect(item.id)} style={{ cursor: "pointer" }} />
+              <input type="checkbox" checked={selected.has(item.id)} onChange={() => toggleSelect(item.id)} style={{ cursor: "pointer", accentColor: "#7F56D9" }} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 {/* Type badge */}
                 <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 6, flexWrap: "wrap" }}>
@@ -688,13 +688,13 @@ function ReviewQueuePage({ T, isDark, isMobile, isAdmin = true, orgId, eventStre
                   {item.signal.biasTag && <BiasTag tag={item.signal.biasTag} />}
                 </div>
                 {/* Content */}
-                <div style={{ fontSize: 13, color: T.fg, lineHeight: 1.5 }}>
+                <div style={{ fontSize: 13, color: T.textBody, lineHeight: 1.5 }}>
                   {item.signal.content || item.signal.title || "No content"}
                 </div>
                 {item.signal.speaker && <div style={{ fontSize: 11, color: T.textMuted, marginTop: 4 }}>{item.signal.speaker}{item.signal.account ? ` — ${item.signal.account}` : ""}</div>}
                 {/* AI suggestion info */}
                 {item.reviewType === "bias_conflict" && item.aiSuggestedBias && (
-                  <div style={{ marginTop: 8, fontSize: 11, color: T.textMuted }}>AI suggests: <strong style={{ color: T.fg }}>{item.aiSuggestedBias}</strong> (current: {item.signal.biasTag})</div>
+                  <div style={{ marginTop: 8, fontSize: 11, color: T.textMuted }}>AI suggests: <strong style={{ color: T.textBody }}>{item.aiSuggestedBias}</strong> (current: {item.signal.biasTag})</div>
                 )}
                 {item.themes && item.themes.length > 0 && (
                   <div style={{ marginTop: 6, display: "flex", gap: 4, flexWrap: "wrap" }}>
@@ -708,8 +708,8 @@ function ReviewQueuePage({ T, isDark, isMobile, isAdmin = true, orgId, eventStre
             {/* Actions */}
             {isAdmin && item.status === "pending" && (
               <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
-                <button onClick={() => handleReview(item.id, { action: "accept" })} style={{ padding: "5px 12px", borderRadius: 6, border: "none", background: "#12B76A", color: "#fff", fontSize: 11, fontWeight: 600, cursor: "pointer" }}>Accept</button>
-                <button onClick={() => handleReview(item.id, { action: "reject" })} style={{ padding: "5px 12px", borderRadius: 6, border: "none", background: "#F04438", color: "#fff", fontSize: 11, fontWeight: 600, cursor: "pointer" }}>Reject</button>
+                <button onClick={() => handleReview(item.id, { action: "accept" })} style={{ padding: "5px 12px", borderRadius: 8, border: "none", background: "#12B76A", color: "#fff", fontSize: 11, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Accept</button>
+                <button onClick={() => handleReview(item.id, { action: "reject" })} style={{ padding: "5px 12px", borderRadius: 8, border: "none", background: "#F04438", color: "#fff", fontSize: 11, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Reject</button>
               </div>
             )}
             {item.status !== "pending" && (
@@ -722,9 +722,9 @@ function ReviewQueuePage({ T, isDark, isMobile, isAdmin = true, orgId, eventStre
       {/* Pagination */}
       {total > filters.limit && (
         <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 20 }}>
-          <button disabled={filters.page <= 1} onClick={() => setFilters(f => ({ ...f, page: f.page - 1 }))} style={{ padding: "6px 14px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.fg, fontSize: 12, cursor: filters.page <= 1 ? "default" : "pointer", opacity: filters.page <= 1 ? 0.4 : 1 }}>Prev</button>
+          <button disabled={filters.page <= 1} onClick={() => setFilters(f => ({ ...f, page: f.page - 1 }))} style={{ padding: "6px 14px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.textBody, fontSize: 12, fontFamily: "inherit", cursor: filters.page <= 1 ? "default" : "pointer", opacity: filters.page <= 1 ? 0.4 : 1 }}>Prev</button>
           <span style={{ padding: "6px 14px", fontSize: 12, color: T.textMuted }}>Page {filters.page} of {Math.ceil(total / filters.limit)}</span>
-          <button disabled={filters.page >= Math.ceil(total / filters.limit)} onClick={() => setFilters(f => ({ ...f, page: f.page + 1 }))} style={{ padding: "6px 14px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.fg, fontSize: 12, cursor: filters.page >= Math.ceil(total / filters.limit) ? "default" : "pointer", opacity: filters.page >= Math.ceil(total / filters.limit) ? 0.4 : 1 }}>Next</button>
+          <button disabled={filters.page >= Math.ceil(total / filters.limit)} onClick={() => setFilters(f => ({ ...f, page: f.page + 1 }))} style={{ padding: "6px 14px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.textBody, fontSize: 12, fontFamily: "inherit", cursor: filters.page >= Math.ceil(total / filters.limit) ? "default" : "pointer", opacity: filters.page >= Math.ceil(total / filters.limit) ? 0.4 : 1 }}>Next</button>
         </div>
       )}
     </div>
@@ -812,7 +812,13 @@ function ConnectorsPage({ T, isDark, isMobile, isAdmin, orgId, eventStream }) {
   };
 
   const FREQ_LABELS = { '1h': 'Hourly', '6h': 'Every 6h', '24h': 'Daily', '168h': 'Weekly' };
-  const TYPE_ICONS = { gong: '\u{1F399}\u{FE0F}', canny: '\u{1F4AC}', pendo: '\u{1F4CA}', salesforce: '\u{2601}\u{FE0F}', jira: '\u{1F4CB}' };
+  const TYPE_ICONS = {
+    gong: (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>),
+    canny: (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path d="M12 7v6"/><path d="M9 10l3-3 3 3"/></svg>),
+    pendo: (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>),
+    salesforce: (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>),
+    jira: (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>),
+  };
 
   // Merge historical activity with live SSE activities
   const allActivities = useMemo(() => {
@@ -849,10 +855,10 @@ function ConnectorsPage({ T, isDark, isMobile, isAdmin, orgId, eventStream }) {
           <div key={conn.id} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 12, padding: 20, boxShadow: T.shadow }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ fontSize: 20 }}>{TYPE_ICONS[conn.type] || '\u{1F50C}'}</span>
+                <div style={{ width: 32, height: 32, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{TYPE_ICONS[conn.type] || (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={T.textMuted} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>)}</div>
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: T.textTitle }}>{conn.name}</div>
-                  <div style={{ fontSize: 11, color: T.textMuted }}>{FREQ_LABELS[conn.syncFrequency] || conn.syncFrequency}</div>
+                  <div style={{ fontSize: 12, color: T.textMuted }}>{FREQ_LABELS[conn.syncFrequency] || conn.syncFrequency}</div>
                 </div>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -869,11 +875,11 @@ function ConnectorsPage({ T, isDark, isMobile, isAdmin, orgId, eventStream }) {
             </div>
 
             <div style={{ display: "flex", gap: 12, marginBottom: 16, fontSize: 12 }}>
-              <div style={{ flex: 1, padding: "8px 10px", background: isDark ? "rgba(255,255,255,0.04)" : "#F9FAFB", borderRadius: 8 }}>
+              <div style={{ flex: 1, padding: "8px 10px", background: T.surfaceAlt, borderRadius: 8 }}>
                 <div style={{ color: T.textMuted, fontSize: 10, marginBottom: 2 }}>Last Sync</div>
                 <div style={{ color: T.textBody, fontWeight: 600 }}>{conn.lastSyncAt ? new Date(conn.lastSyncAt).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Never'}</div>
               </div>
-              <div style={{ flex: 1, padding: "8px 10px", background: isDark ? "rgba(255,255,255,0.04)" : "#F9FAFB", borderRadius: 8 }}>
+              <div style={{ flex: 1, padding: "8px 10px", background: T.surfaceAlt, borderRadius: 8 }}>
                 <div style={{ color: T.textMuted, fontSize: 10, marginBottom: 2 }}>Status</div>
                 <div style={{ color: conn.enabled ? "#12B76A" : T.textDim, fontWeight: 600 }}>{conn.enabled ? "Active" : "Disabled"}</div>
               </div>
