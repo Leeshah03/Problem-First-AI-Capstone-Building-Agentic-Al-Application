@@ -1,4 +1,6 @@
 # Project Sift — AI-Driven Signal Prioritization Platform
+App link- https://project-sift.vercel.app/
+
 
 Project Sift is an agentic AI application that ingests customer signals from multiple data sources, classifies and deduplicates them using an LLM pipeline, and surfaces high-priority product insights for review. Built as a capstone project for the **Problem-First AI: Building Agentic AI Applications for Product Prioritization** course.
 
